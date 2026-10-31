@@ -1,56 +1,245 @@
-# Welcome to your Expo app 👋
+# FocusForge 🚀
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+### Your Screen. Your Goals. Your Focus.
 
-## Get started
+FocusForge is a student-focused digital wellbeing and productivity application. It encourages healthier study habits through timed focus sessions, progress tracking, XP rewards, streaks, analytics, and community challenges.
 
-1. Install dependencies
+**Institution:** Government Engineering College, Ajmer (GEC Ajmer), Rajasthan, India  
+**Project type:** Hackathon project  
+**Current platform:** Android app prototype built with React Native and Expo
 
-   ```bash
-   npm install
-   ```
+---
 
-2. Start the app
+## Table of Contents
 
-   ```bash
-   npx expo start
-   ```
+- [Problem](#problem)
+- [Our Solution](#our-solution)
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Project Structure](#project-structure)
+- [Requirements](#requirements)
+- [Setup and Running Instructions](#setup-and-running-instructions)
+- [Backend API](#backend-api)
+- [Current Development Status](#current-development-status)
+- [Team](#team)
+- [Future Scope](#future-scope)
 
-In the output, you'll find options to open the app in a
+## Problem
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Students can lose substantial study time to social media, doomscrolling, and short-form video platforms. Conventional screen-time tools often focus on restrictions and warnings, which can feel punitive and may be easy to bypass.
 
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Our Solution
 
-## Get a fresh project
+FocusForge aims to make focused study more rewarding and social. Students can run focus sessions, see their progress, earn rewards, and take part in friendly study challenges. The longer-term vision includes shared accountability groups and privacy-conscious leaderboards.
 
-When you're ready, run:
+## Features
 
-```bash
-npm run reset-project
+### Implemented in the current mobile prototype
+
+- **Focus timer:** Start, pause, and reset a timed study session.
+- **XP and levels:** Earn XP after a completed focus session and progress through levels.
+- **Study streak:** Track consecutive days with completed focus sessions.
+- **Persistent local progress:** Save focus statistics locally using AsyncStorage.
+- **Focus history:** View recent completed sessions, their dates, durations, and XP earned.
+- **Weekly analytics:** View recent focus activity, weekly session counts, goal progress, and best day based on saved sessions.
+- **Community prototype:** View a demo leaderboard, join or leave a weekly challenge, and cheer sample friends.
+- **Local community persistence:** Save challenge membership and cheer counts on the device.
+
+### Prototype limitations
+
+- The leaderboard currently uses sample friend data; it is not a live leaderboard.
+- Community challenge membership and cheers are stored locally on the device and are not synchronized between users.
+- The mobile app and backend currently run separately. The app has not yet been connected to the backend API.
+- MongoDB, user registration/login, real friend groups, and live cross-device rankings are planned, not implemented.
+- The Chrome extension and automatic cross-app distraction tracking/blocking are planned future work.
+
+## Technology Stack
+
+| Technology | Purpose | Status |
+|---|---|---|
+| React Native | Android mobile UI | Implemented |
+| Expo | Mobile development and testing | Implemented |
+| TypeScript | Mobile application code | Implemented |
+| Expo Router | Screen and tab navigation | Implemented |
+| AsyncStorage | Local persistence | Implemented |
+| Node.js | Backend runtime | Basic server created |
+| Express | Backend HTTP API | Basic health-check API created |
+| CORS | Cross-origin API middleware | Installed in backend |
+| dotenv | Environment variable configuration | Installed in backend |
+| MongoDB | Cloud database | Planned |
+| Chrome Extension APIs | Browser distraction controls | Planned |
+
+## Project Structure
+
+```text
+FocusForge/
+├── src/
+│   ├── app/
+│   │   ├── _layout.tsx
+│   │   ├── index.tsx          # Home dashboard and focus timer
+│   │   ├── analytics.tsx      # Weekly analytics
+│   │   └── explore.tsx        # Community prototype
+│   └── components/
+│       └── app-tabs.tsx       # Home, Community, Analytics tabs
+│
+├── backend/
+│   ├── src/
+│   │   └── server.js          # Express server and health endpoint
+│   ├── package.json
+│   └── package-lock.json
+│
+├── assets/
+├── constants/
+├── package.json
+├── package-lock.json
+└── README.md
 ```
 
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
+*Note: The structure above reflects the current project layout; retain any additional configuration files or components already generated by Expo.*
 
-### Other setup steps
+## Requirements
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+- Node.js and npm
+- Visual Studio Code or another code editor
+- Expo Go on an Android phone
+- A Wi-Fi network shared by the development computer and phone for LAN testing
 
-## Learn more
+## Setup and Running Instructions
 
-To learn more about developing your project with Expo, look at the following resources:
+Open the project folder in VS Code. Use **two separate terminals**: one for the mobile app and one for the backend. Keep both terminals running while testing both parts.
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### 1. Install mobile dependencies
 
-## Join the community
+From the project root (`FocusForge/`):
 
-Join our community of developers creating universal apps.
+```bash
+npm install
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+### 2. Start the mobile app
+
+From the project root:
+
+```bash
+npx expo start
+```
+
+Scan the displayed QR code with Expo Go on your Android phone. If local network discovery does not work, check that the phone and computer are on the same Wi-Fi network and that the firewall allows the development server.
+
+### 3. Install backend dependencies
+
+Open a second terminal and move into the backend folder:
+
+```bash
+cd backend
+npm install
+```
+
+### 4. Start the backend
+
+From `FocusForge/backend/`:
+
+```bash
+node src/server.js
+```
+
+The backend listens on port `4000` by default.
+
+### Windows PowerShell note
+
+If `node`, `npm`, or `npx` is not recognized on Windows, open a new terminal and add the standard Node.js installation directory to the current terminal's PATH:
+
+```powershell
+$env:Path = "C:\Program Files\nodejs;" + $env:Path
+```
+
+Then use the normal commands above. If npm is still not recognized, run it directly with:
+
+```powershell
+& "C:\Program Files\nodejs\npm.cmd" install
+```
+
+For the mobile app, from the project root:
+
+```powershell
+& "C:\Program Files\nodejs\npm.cmd" start -- --clear
+```
+
+For the backend, from `FocusForge/backend/`:
+
+```powershell
+& "C:\Program Files\nodejs\node.exe" .\src\server.js
+```
+
+If Node.js is installed in a different folder on your computer, adjust the paths accordingly.
+
+## Backend API
+
+The current backend provides a basic health-check endpoint.
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/` | Returns a welcome message and server status |
+| GET | `/api/health` | Returns backend health information and a timestamp |
+
+With the backend running locally, open:
+
+```text
+http://localhost:4000/api/health
+```
+
+Expected response format:
+
+```json
+{
+  "success": true,
+  "message": "FocusForge backend is working!",
+  "timestamp": "<ISO timestamp>"
+}
+```
+
+The health endpoint confirms that the server is running. It does not mean the mobile app is already connected to the backend.
+
+## Current Development Status
+
+| Area | Status |
+|---|---|
+| Android mobile prototype | Implemented |
+| Focus timer | Implemented |
+| XP, levels, and streaks | Implemented in local prototype |
+| Local progress persistence | Implemented |
+| Focus history | Implemented using saved local sessions |
+| Weekly analytics | Implemented using saved local sessions |
+| Community UI and challenge interaction | Implemented as local prototype with demo members |
+| Express backend | Basic server and health endpoint implemented |
+| MongoDB integration | Planned |
+| Authentication and user accounts | Planned |
+| Shared groups and live leaderboard | Planned |
+| Chrome extension | Planned |
+
+## Team
+
+Developed by students of **Government Engineering College, Ajmer (GEC Ajmer)**.
+
+| Name | Role |
+|---|---|
+| Yash Soni | Team Leader |
+| Dev Goyal | Team Member |
+| Shubhangi Saxena | Team Member |
+| Krishna Kumawat | Team Member |
+
+## Future Scope
+
+- Connect the mobile application to the Express backend.
+- Integrate MongoDB for cloud-based user and session data.
+- Add secure student registration and login.
+- Create real accountability groups with invitations and shared challenges.
+- Build synchronized leaderboards based on focus-session statistics.
+- Develop a Chrome extension for browser focus sessions and website distraction controls.
+- Explore supported Android usage-access features for broader screen-time insights, with clear user permission and privacy controls.
+
+## Our Vision
+
+We believe productivity should be encouraged, not forced. FocusForge aims to help students choose their goals over distractions through positive reinforcement, personal progress, and supportive communities.
+
+**FocusForge — Make Focus Your Superpower.**
