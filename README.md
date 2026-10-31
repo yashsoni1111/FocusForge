@@ -162,7 +162,7 @@ Then use the normal commands above. If npm is still not recognized, run it direc
 For the mobile app, from the project root:
 
 ```powershell
-& "C:\Program Files\nodejs\npm.cmd" start -- --clear
+& "C:\Program Files\nodejs\npm.cmd" start -- --tunnel ngrok --clear
 ```
 
 For the backend, from `FocusForge/backend/`:
